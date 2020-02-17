@@ -1,14 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-const FilmList = ({ items }) => {
+import style from './FilmList.module.css';
+
+const FilmList = ({ items, location }) => {
+  if (!items.length) {
+    return <div className={style.no_result}>Movies do not found</div>;
+  }
+
   return (
-    <ul>
+    <ul className={style.ul}>
       {items.map(({ id, title }) => {
         const link = `/movies/${id}`;
         return (
-          <li key={id}>
-            <Link to={link}>{title}</Link>
+          <li key={id} className={style.li}>
+            <Link
+              to={{
+                pathname: link,
+                state: { from: location },
+              }}
+            >
+              {title}
+            </Link>
           </li>
         );
       })}
@@ -16,4 +30,9 @@ const FilmList = ({ items }) => {
   );
 };
 
-export default FilmList;
+FilmList.propTypes = {
+  location: PropTypes.instanceOf(Object).isRequired,
+  items: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+};
+
+export default withRouter(FilmList);
