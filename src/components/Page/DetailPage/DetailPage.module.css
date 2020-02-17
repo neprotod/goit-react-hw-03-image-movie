@@ -1,0 +1,25 @@
+.button_group{
+  display: flex;
+  width: auto;
+}
+
+.additional_button{
+  background: inherit;
+  border:none;
+  margin: none;
+  background: rgb(34, 194, 243);
+  padding:5px;
+  border-right: 1px solid #999;
+  text-decoration: none;
+  color:rgb(82, 82, 82);
+}
+.active{
+  background: rgb(26, 146, 182);
+  cursor: default;
+  pointer-events: none;
+}
+
+.additional_button:hover{
+  background: rgb(28, 135, 168);
+  color:rgb(214, 213, 213);
+}
