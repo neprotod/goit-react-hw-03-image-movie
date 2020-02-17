@@ -1,0 +1,19 @@
+.wrapper{
+  display: flex;
+  flex-wrap: wrap;
+}
+.cart{
+  text-align: center;
+  width:150px;
+  padding:10px;
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+}
+.img-box{
+  width:100px;
+  height:150px;
+}
+.cart img{
+  height:100%;
+}

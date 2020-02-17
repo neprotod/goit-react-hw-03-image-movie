@@ -1,0 +1,14 @@
+.wrapper{
+
+}
+
+.post{
+  background:rgb(234, 232, 245);
+  padding:20px;
+  margin-bottom:20px;
+}
+.author{
+  font-weight:bold;
+  color:rgb(78, 78, 78);
+  padding-bottom:10px;
+}
