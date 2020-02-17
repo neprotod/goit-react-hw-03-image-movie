@@ -5,6 +5,11 @@ import config from '../config';
 export default class Moviedb {
   baseUrl = 'https://api.themoviedb.org/3/';
 
+  imgUrl = 'https://image.tmdb.org/t/p/w300/';
+
+  /**
+   * Add to base url
+   */
   urlType = {
     TRENDING_WEEK: 'trending/movie/week',
     SEARCH: 'search/movie',
@@ -22,7 +27,7 @@ export default class Moviedb {
   /**
    * This function connection all query to one string
    *
-   * @param {{}} newQuery it's new query string
+   * @param {{}} newQuery it's new query string, key => value
    * @return {String} query string
    */
   _setQuery = (newQuery = {}) => {
@@ -38,16 +43,107 @@ export default class Moviedb {
   };
 
   /**
-   * Return all the trending movies in a week.
+   * Get resource from url
+   *
+   * @param {String} url resource url
+   * @return {{}} resource
    */
-  getTrendsWeek = async () => {
-    const { baseUrl, urlType, _setQuery } = this;
-    const url = baseUrl + urlType.TRENDING_WEEK + _setQuery();
+  _getResource = async url => {
     try {
-      const res = await axios.get(url);
-      return res.data.results;
+      return await axios.get(url);
     } catch (e) {
+      console.error(e);
       throw new Error('Could get resource');
     }
+  };
+
+  /**
+   * Concat to base url
+   *
+   * @param  {...any} arg string to concat 'hello', 'world'
+   * @return {String} concatenated string
+   */
+  _concat = (...arg) => {
+    const { baseUrl } = this;
+    return baseUrl.concat(...arg);
+  };
+
+  /**
+   * Return all the trending movies in a week.
+   *
+   * @return {Array} resource with movies
+   */
+  getTrendsWeek = async () => {
+    const { _concat, urlType, _setQuery, _getResource } = this;
+    const url = _concat(urlType.TRENDING_WEEK, _setQuery());
+    const res = await _getResource(url);
+
+    return res.data.results;
+  };
+
+  /**
+   * Return movie by id.
+   *
+   * @param {Number} id movie id
+   * @return {Array} resource with movie
+   */
+  getMovieById = async id => {
+    const { _concat, urlType, _setQuery, _getResource } = this;
+    const url = _concat(urlType.GET_ONE_MOVIE, id, _setQuery());
+    const res = await _getResource(url);
+
+    return res.data;
+  };
+
+  /**
+   * Return credits.
+   *
+   * @param {Number} id movie id
+   * @return {Array} resource with cast
+   */
+  getMovieCredits = async id => {
+    const { _concat, urlType, _setQuery, _getResource } = this;
+    const url = _concat(urlType.GET_ONE_MOVIE, id, '/credits', _setQuery());
+    const res = await _getResource(url);
+
+    return res.data.cast;
+  };
+
+  /**
+   * Return reviews.
+   *
+   * @param {Number} id movie id
+   * @return {Array} resource with reviews
+   */
+  getMovieReview = async id => {
+    const { _concat, urlType, _setQuery, _getResource } = this;
+    const url = _concat(urlType.GET_ONE_MOVIE, id, '/reviews', _setQuery());
+    const res = await _getResource(url);
+
+    return res.data.results;
+  };
+
+  /**
+   * Return reviews.
+   *
+   * @param {string} id movie name
+   * @return {Array} resource with movies
+   */
+  getMoviesByQuery = async query => {
+    const { _concat, urlType, _setQuery, _getResource } = this;
+    const url = _concat(urlType.SEARCH, _setQuery({ query }));
+    const res = await _getResource(url);
+
+    return res.data.results;
+  };
+
+  /**
+   * Get url to image
+   *
+   * @param {String} url
+   * @return {String} url to img
+   */
+  getImgUrl = url => {
+    return `${this.imgUrl}${url}`;
   };
 }
