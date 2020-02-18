@@ -2,7 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import { HomePage, Error404, DetailPage, MoviePage } from '../Page';
+import { HomePage, NotFound, DetailPage, MoviePage } from '../Page';
 import Header from '../Header';
 import withMoviedb from '../../hoc/withMoviedb';
 
@@ -17,7 +17,7 @@ const App = () => {
           <Route exact path="/" component={HomePage} />
           <Route path="/movies/:id" component={DetailPage} />
           <Route path="/movies" component={MoviePage} />
-          <Route component={Error404} />
+          <Route component={NotFound} />
         </Switch>
       </div>
     </Router>

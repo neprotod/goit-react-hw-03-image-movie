@@ -31,9 +31,7 @@ export class MovieCast extends Component {
   render() {
     const { loading, cast } = this.state;
     const { moviedb } = this.props;
-
     const noArtist = <div className="no_artist">Any artists</div>;
-
     const items = cast.map(({ cast_id, name, profile_path }) => (
       <div key={cast_id} className={style.cart}>
         <div className={style['img-box']}>

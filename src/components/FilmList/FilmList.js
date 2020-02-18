@@ -8,7 +8,6 @@ const FilmList = ({ items, location }) => {
   if (!items.length) {
     return <div className={style.no_result}>Movies do not found</div>;
   }
-
   return (
     <ul className={style.ul}>
       {items.map(({ id, title }) => {

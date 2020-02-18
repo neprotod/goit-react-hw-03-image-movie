@@ -12,24 +12,12 @@ class SearchBar extends Component {
     input: '',
   };
 
-  /**
-   * Handler input, controlling element
-   *
-   * @param {{}} e react event
-   * @return void
-   */
   onChange = e => {
     this.setState({
       input: e.target.value,
     });
   };
 
-  /**
-   * Handler submit
-   *
-   * @param {{}} e react event
-   * @return void
-   */
   onSubmit = e => {
     e.preventDefault();
     const { searchHandler } = this.props;

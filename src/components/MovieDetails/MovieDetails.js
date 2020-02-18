@@ -46,7 +46,6 @@ MovieDetails.propTypes = {
     original_title: PropTypes.string,
     overview: PropTypes.string,
     vote_average: PropTypes.number,
-
     genres: PropTypes.oneOfType([PropTypes.array]),
   }).isRequired,
 };

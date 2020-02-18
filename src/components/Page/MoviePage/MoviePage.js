@@ -23,34 +23,23 @@ class MoviePage extends Component {
 
   async componentDidMount() {
     const { location } = this.props;
-
     const parseQuery = qs.parse(location.search);
-
     if (!parseQuery.search) {
       this.setState({
         loading: false,
       });
       return;
     }
-
     this.searchHandler(parseQuery.search);
   }
 
-  /**
-   * Add path to history and find resource.
-   *
-   * @param {String} search query strung
-   * @return void
-   */
   searchHandler = async search => {
     const { history, moviedb } = this.props;
     history.push({
       ...this.props.location,
       search: `search=${search}`,
     });
-
     const movies = await moviedb.getMoviesByQuery(search);
-
     this.setState({
       loading: false,
       movies,

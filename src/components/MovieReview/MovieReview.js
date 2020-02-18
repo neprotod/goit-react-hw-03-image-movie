@@ -29,16 +29,13 @@ class MovieReview extends Component {
 
   render() {
     const { loading, reviews } = this.state;
-
     const noReviews = <div className="no_reviews">Any reviews</div>;
-
     const items = reviews.map(({ id, author, content }) => (
       <div key={id} className={style.post}>
         <div className={style.author}>{author}</div>
         <div className={style.content}>{content}</div>
       </div>
     ));
-
     return (
       <Loading loaded={loading}>
         <div className={style.wrapper}>
