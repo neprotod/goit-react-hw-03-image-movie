@@ -2,15 +2,15 @@ import React, { Component, lazy, Suspense } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Loading from '../../Loading';
-import { ButtonBack } from '../../Button';
-import MovieDetails from '../../MovieDetails';
-import withMoviedb from '../../../hoc/withMoviedb';
+import Loading from '../../components/Loading';
+import { ButtonBack } from '../../components/Button';
+import MovieDetails from '../../components/MovieDetails';
+import withMoviedb from '../../hoc/withMoviedb';
 
 import style from './DetailPage.module.css';
 
-const MovieCast = lazy(() => import('../../MovieCast'));
-const MovieReview = lazy(() => import('../../MovieReview'));
+const MovieCast = lazy(() => import('../../components/MovieCast'));
+const MovieReview = lazy(() => import('../../components/MovieReview'));
 
 class DetailPage extends Component {
   static propTypes = {

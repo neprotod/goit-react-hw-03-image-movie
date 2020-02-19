@@ -17,3 +17,10 @@
 .cart img{
   height:100%;
 }
+.no_image{
+  width:100%;
+  height:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

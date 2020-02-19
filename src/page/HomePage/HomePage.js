@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import FilmList from '../../FilmList';
-import Loading from '../../Loading';
-import withMoviedb from '../../../hoc/withMoviedb';
+import FilmList from '../../components/FilmList';
+import Loading from '../../components/Loading';
+import withMoviedb from '../../hoc/withMoviedb';
 
 class HomePage extends Component {
   static propTypes = {

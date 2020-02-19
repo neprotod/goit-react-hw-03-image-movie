@@ -1,11 +1,12 @@
+/* eslint-disable import/no-cycle */
 import React, { Component } from 'react';
 import qs from 'query-string';
 import PropTypes from 'prop-types';
 
-import FilmList from '../../FilmList';
-import Loading from '../../Loading';
-import SearchBar from '../../SearchBar';
-import withMoviedb from '../../../hoc/withMoviedb';
+import FilmList from '../../components/FilmList';
+import Loading from '../../components/Loading';
+import SearchBar from '../../components/SearchBar';
+import withMoviedb from '../../hoc/withMoviedb';
 
 import style from './MoviePage.module.css';
 
@@ -21,7 +22,7 @@ class MoviePage extends Component {
     movies: [],
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     const { location } = this.props;
     const parseQuery = qs.parse(location.search);
     if (!parseQuery.search) {

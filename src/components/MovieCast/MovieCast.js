@@ -31,11 +31,15 @@ export class MovieCast extends Component {
   render() {
     const { loading, cast } = this.state;
     const { moviedb } = this.props;
-    const noArtist = <div className="no_artist">Any artists</div>;
+    const noArtist = <div className="no_artist">No artists</div>;
+    const noImage = <div className={style.no_image}>No image</div>;
     const items = cast.map(({ cast_id, name, profile_path }) => (
       <div key={cast_id} className={style.cart}>
         <div className={style['img-box']}>
-          <img src={moviedb.getImgUrl(profile_path)} alt={name} />
+          {(profile_path && (
+            <img src={moviedb.getImgUrl(profile_path)} alt={name} />
+          )) ||
+            noImage}
         </div>
         <div className="name">{name}</div>
       </div>

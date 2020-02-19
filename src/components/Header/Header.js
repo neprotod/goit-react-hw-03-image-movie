@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import './Header.css';
 
@@ -12,9 +12,9 @@ const Header = () => {
       <NavLink exact activeClassName="active" to="/movies">
         Movies
       </NavLink>
-      <NavLink exact className="home-logo" to="/">
+      <Link className="home-logo" to="/">
         Movies Finder
-      </NavLink>
+      </Link>
     </header>
   );
 };

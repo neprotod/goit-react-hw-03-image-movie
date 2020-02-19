@@ -29,7 +29,7 @@ class MovieReview extends Component {
 
   render() {
     const { loading, reviews } = this.state;
-    const noReviews = <div className="no_reviews">Any reviews</div>;
+    const noReviews = <div className="no_reviews">No reviews</div>;
     const items = reviews.map(({ id, author, content }) => (
       <div key={id} className={style.post}>
         <div className={style.author}>{author}</div>

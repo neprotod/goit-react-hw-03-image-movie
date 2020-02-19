@@ -1,8 +1,14 @@
+/* eslint-disable import/no-cycle */
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import routers from '../../routers';
+
 import style from './FilmList.module.css';
+
+// console.log(routing);
+// const { detail } = routing;
 
 const FilmList = ({ items, location }) => {
   if (!items.length) {
@@ -10,21 +16,18 @@ const FilmList = ({ items, location }) => {
   }
   return (
     <ul className={style.ul}>
-      {items.map(({ id, title }) => {
-        const link = `/movies/${id}`;
-        return (
-          <li key={id} className={style.li}>
-            <Link
-              to={{
-                pathname: link,
-                state: { from: location },
-              }}
-            >
-              {title}
-            </Link>
-          </li>
-        );
-      })}
+      {items.map(({ id, title }) => (
+        <li key={id} className={style.li}>
+          <Link
+            to={{
+              pathname: routers.DETAIL_PAGE.pathname.replace(':id', id),
+              state: { from: location },
+            }}
+          >
+            {title}
+          </Link>
+        </li>
+      ))}
     </ul>
   );
 };
